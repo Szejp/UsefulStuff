@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 02319743d92e41c4fa7cdd89869b9b03
+timeCreated: 1484932546
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - m_shCopy: {fileID: 4800000, guid: 2283fb92223c7914c9096670e29202c8, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
