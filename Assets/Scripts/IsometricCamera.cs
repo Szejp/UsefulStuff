@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class QuadCameraController : MonoBehaviour
+public class IsometricCamera : MonoBehaviour
 {
     public enum QuaternionAxis
     {
@@ -104,11 +104,5 @@ public class QuadCameraController : MonoBehaviour
     public void SetRange(float r)
     {
         range = r;  
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-
     }
 }
