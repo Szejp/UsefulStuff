@@ -246,7 +246,7 @@ namespace UTJ
                 Debug.LogWarning("MP4Recorder: capture audio with Constant frame rate mode will cause desync");
             }
 #endif
-            m_shCopy = FrameCapturerUtils.GetFrameBufferCopyShader();
+            //m_shCopy = FrameCapturerUtils.GetFrameBufferCopyShader();
             m_outputDir.CreateDirectory();
             m_quad = FrameCapturerUtils.CreateFullscreenQuad();
             m_mat_copy = new Material(m_shCopy);
