@@ -13,6 +13,7 @@ public class LineRendererRecursive : RecursiveObject {
         }
     }
 
+
     protected void Create() {
         var obj = Create<LineRendererRecursive>();
         Vector3 startingPos = lineRenderer.GetPosition(lineRenderer.positionCount - 1);
