@@ -26,8 +26,6 @@ public class Grid : MonoBehaviour {
         _vertices = _mesh.vertices;
     }
 
-
-
     private void OnDrawGizmos() {
         if (_mesh.vertices == null || _mesh.vertices.Length == 0) {
             return;
