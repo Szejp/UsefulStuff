@@ -8,8 +8,7 @@ public class Grid : MonoBehaviour {
     public int xSize, ySize;
     public float deltaLength = 1;
     public float noiseDelta = 0.5f;
-    public GameObject sphere;
-
+        
     private Mesh _mesh;
     private Vector3[] _vertices;
 
@@ -35,24 +34,6 @@ public class Grid : MonoBehaviour {
         for (int i = 0; i < _mesh.vertices.Length; i++) {
             Gizmos.DrawSphere(_mesh.vertices[i], 0.1f);
         }
-    }
-
-    private void Update() {
-        _mesh.vertices = RecalculateVertices((Vector3[])_vertices.Clone());
-        _mesh.RecalculateNormals();
-    }
-
-    private Vector3[] RecalculateVertices(Vector3[] vertices) {
-        for (int i = 0; i < vertices.Length; i++) {
-            var vector = vertices[i] - new Vector3(vertices[i].x, vertices[i].y, sphere.transform.position.z);
-            var distance = sphere.transform.localScale.x - vector.sqrMagnitude;
-            if ((vertices[i] - sphere.transform.position).sqrMagnitude < sphere.transform.localScale.x) {
-                var position = (sphere.transform.localScale.x - vector.sqrMagnitude) * vector.normalized;
-                vertices[i] += position;
-            }
-        }
-
-        return vertices;
     }
 
     private int[] GenerateTriangles(int xSize, int ySize) {

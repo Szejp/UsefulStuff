@@ -12,7 +12,7 @@ public class DragonController : MonoBehaviour {
     public List<GameObject> objectsToDestroy;
 
     [SerializeField]
-    private NavMeshMovement navMeshMovement;
+    private DragonNavMeshMovement navMeshMovement;
     private AnimationController animController;
     private bool canAttack = true;
     private const float range = 4;

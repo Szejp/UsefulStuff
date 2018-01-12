@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class NavMeshMovement : MonoBehaviour {
+public class DragonNavMeshMovement : MonoBehaviour {
 
     public Transform mapPivotReference;
     [HideInInspector]

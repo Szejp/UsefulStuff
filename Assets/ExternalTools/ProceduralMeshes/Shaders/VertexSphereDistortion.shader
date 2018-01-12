@@ -25,6 +25,7 @@
 				{
 					float4 vertex : POSITION;
 					float2 uv : TEXCOORD0;
+					float3 normal : NORMAL;
 				};
 
 				struct v2f
@@ -39,13 +40,23 @@
 				float3 _SphereOrigin;
 				float _Range;
 
+				bool isInRange(float x, float originX, float range) {
+					return x > originX - range && x < originX + range;
+				}
+
 				v2f vert(appdata v)
 				{
 					v2f o;
 
 					float sqrtEq = pow(_Range, 2) - pow(v.vertex.x - _SphereOrigin.x, 2) - pow(v.vertex.y - _SphereOrigin.y, 2);
-					if (sqrtEq >= 0) {
-						v.vertex.z = sqrt(sqrtEq) + _SphereOrigin.z;
+					if (isInRange(v.vertex.x, _SphereOrigin.x, _Range) &&
+						isInRange(v.vertex.y, _SphereOrigin.y, _Range) &&
+						isInRange(v.vertex.z, _SphereOrigin.z, _Range) &&
+						sqrtEq >= 0) {
+						float newVertex = sqrt(sqrtEq) + _SphereOrigin.z;
+						if (newVertex > v.vertex.z) {
+							v.vertex.z = newVertex;
+						}
 					}
 
 					o.vertex = UnityObjectToClipPos(v.vertex);

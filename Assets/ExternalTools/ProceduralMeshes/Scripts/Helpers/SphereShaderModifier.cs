@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class SphereShaderModifier : MonoBehaviour {
 
     public GameObject sphereObj;
     public GameObject grid;
+    public float range;
 
     private Material _mat;
 
@@ -15,6 +17,6 @@ public class SphereShaderModifier : MonoBehaviour {
 
     private void Update() {
         _mat.SetVector("_SphereOrigin", sphereObj.transform.position);
-        _mat.SetFloat("_Range", sphereObj.transform.localScale.x);
+        _mat.SetFloat("_Range", range);
     }
 }
