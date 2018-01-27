@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using System;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class NavMeshMovement : Movement {
 
-    [ContextMenu("TeleportTest")]
-    public void TeleporTest() {
-        Teleport(Vector3.zero);
+    public NavMeshAgent agent {
+        get {
+            return _agent;
+        }
     }
 
-    [SerializeField]
     private NavMeshAgent _agent;
     [SerializeField]
     private float _speed;
+    [SerializeField]
+    private Transform _mapPivotReference;
     private Vector3 _agentDestination;
 
     public override void MoveLeft() {
@@ -24,7 +26,7 @@ public class NavMeshMovement : Movement {
     public override void MoveRight() {
         _agentDestination += Vector3.right * _speed;
     }
-    
+
     public override void MoveForwards() {
         _agentDestination += Vector3.forward * _speed;
     }
@@ -40,23 +42,57 @@ public class NavMeshMovement : Movement {
     public override void MoveUp() { }
     public override void MoveDown() { }
 
-    // Update is called once per frame
-    private void Update() {
-        if (Input.GetKey(KeyCode.W))
-            MoveForwards();
-        if (Input.GetKey(KeyCode.S))
-            MoveBackwards();
-        if (Input.GetKey(KeyCode.D))
-            MoveRight();
-        if (Input.GetKey(KeyCode.A))
-            MoveLeft();
+    [ContextMenu("TeleportTest")]
+    public void TeleporTest() {
+        Teleport(Vector3.zero);
+    }
 
-        _agent.SetDestination(_agentDestination);
-        _agentDestination = _agent.transform.position;
+    public void MoveToDestination(Vector3 destination) {
+        _agentDestination = destination;
+    }
+
+    public void RandomTargetPos() {
+        Vector3 targetPos = RandomPointOnMap(3 << 4);
+        _agent.SetDestination(targetPos);
+    }
+
+    private Vector3 GetClosestPointOnMap(Vector3 position, float maxDistance) {
+        NavMeshHit navMeshHit = new NavMeshHit();
+        NavMesh.SamplePosition(position, out navMeshHit, maxDistance, NavMesh.AllAreas);
+        return navMeshHit.position;
+    }
+
+    private Vector3 RandomPointOnMap(int areaMask) {
+        bool foundPos = false;
+        NavMeshHit navMeshHit = new NavMeshHit();
+        int reTryCount = 0;
+        while (!foundPos && reTryCount < 10) {
+            Vector2 randomCirclePos = Random.insideUnitCircle;
+            Vector3 targetPos = new Vector3(randomCirclePos.x * _mapPivotReference.localScale.x * 0.5f, 0, randomCirclePos.y * _mapPivotReference.localScale.z * 0.5f) + _mapPivotReference.position;
+            foundPos = NavMesh.SamplePosition(targetPos, out navMeshHit, _mapPivotReference.localScale.magnitude * 2, areaMask);
+            reTryCount++;
+        }
+
+        if (foundPos) {
+            return navMeshHit.position;
+        }
+        else {
+            Debug.Log("[NavMeshMovement] Could not find random point on map");
+            return Vector3.zero;
+        }
+    }
+
+    private void Awake() {
+        _agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Update() {
+        _agent?.SetDestination(_agentDestination);
         transform.position = _agent.transform.position;
+        transform.rotation = _agent.transform.rotation;
     }
 
     private void OnDrawGizmos() {
-        Gizmos.DrawSphere(_agent.destination, 0.2f);
+        Gizmos.DrawSphere(transform.position + transform.forward, 0.2f);
     }
 }
