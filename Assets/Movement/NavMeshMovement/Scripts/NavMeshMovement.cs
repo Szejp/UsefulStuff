@@ -54,7 +54,7 @@ public class NavMeshMovement : Movement {
 	}
 
 	public void RandomTargetPos() {
-		Vector3 targetPos = RandomPointOnMap(3 << 4);
+		Vector3 targetPos = NavMeshUtils.RandomPointOnMap(NavMesh.AllAreas, _mapPivotReference.localScale.x, _mapPivotReference.localScale.z, _mapPivotReference.localScale.magnitude, _mapPivotReference.transform.position);
 		_agent.SetDestination(targetPos);
 	}
 
@@ -62,26 +62,6 @@ public class NavMeshMovement : Movement {
 		NavMeshHit navMeshHit = new NavMeshHit();
 		NavMesh.SamplePosition(position, out navMeshHit, maxDistance, NavMesh.AllAreas);
 		return navMeshHit.position;
-	}
-
-	private Vector3 RandomPointOnMap(int areaMask) {
-		bool foundPos = false;
-		NavMeshHit navMeshHit = new NavMeshHit();
-		int reTryCount = 0;
-		while (!foundPos && reTryCount < 10) {
-			Vector2 randomCirclePos = Random.insideUnitCircle;
-			Vector3 targetPos = new Vector3(randomCirclePos.x * _mapPivotReference.localScale.x * 0.5f, 0, randomCirclePos.y * _mapPivotReference.localScale.z * 0.5f) + _mapPivotReference.position;
-			foundPos = NavMesh.SamplePosition(targetPos, out navMeshHit, _mapPivotReference.localScale.magnitude * 2, areaMask);
-			reTryCount++;
-		}
-
-		if (foundPos) {
-			return navMeshHit.position;
-		}
-		else {
-			Debug.Log("[NavMeshMovement] Could not find random point on map");
-			return Vector3.zero;
-		}
 	}
 
 	private void Awake() {
@@ -92,7 +72,7 @@ public class NavMeshMovement : Movement {
 		_agent?.SetDestination(_agentDestination);
 		transform.position = _agent.transform.position;
 		transform.rotation = _agent.transform.rotation;
-		if(isManual)
+		if (isManual)
 			_agentDestination = transform.position;
 	}
 
