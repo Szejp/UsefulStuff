@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class MeshEffector {
 
-    public MeshEffector(Mesh mesh) {
-        _mesh = mesh;
-    }
+	public MeshEffector(Mesh mesh) {
+	}
 
-    public void Rotate() {
+	public void Rotate() {
 
-    }
-
-    private Mesh _mesh;
+	}
 }

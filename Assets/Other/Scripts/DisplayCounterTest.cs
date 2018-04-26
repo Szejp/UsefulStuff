@@ -6,37 +6,34 @@ using System;
 
 public class Test : MonoBehaviour {
 
-    public UnityEngine.UI.Text text;
+	public UnityEngine.UI.Text text;
 
-    private void Start() {
-        foreach (Display d in Display.displays) {
-            d.Activate();
-        }
+	private void Start() {
+		foreach (Display d in Display.displays) {
+			d.Activate();
+		}
+	}
 
-        Type type = typeof(Display);
-        MethodInfo[] methods = type.GetMethods(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance);
-    }
+	private void Update() {
 
-    private void Update() {
+		if (Input.GetKeyUp(KeyCode.Space)) {
+			DisplayCounter.Count();
+		}
 
-        if (Input.GetKeyUp(KeyCode.Space)) {
-            DisplayCounter.Count();
-        }
+		if (Input.GetKeyUp(KeyCode.M)) {
+			DisplayCounter.RefreshUnityDisplaysCount();
+		}
 
-        if (Input.GetKeyUp(KeyCode.M)) {
-            DisplayCounter.RefreshUnityDisplaysCount();
-        }
+		string s = "";
+		foreach (var d in Display.displays) {
+			s += d.systemWidth + "x" + d.systemHeight + "\n";
+		}
 
-        string s = "";
-        foreach (var d in Display.displays) {
-            s += d.systemWidth + "x" + d.systemHeight + "\n";
-        }
+		foreach (var ptr in DisplayCounter.windowPointers) {
+			s += "ptr: " + ptr.ToString() + "\n";
+		}
 
-        foreach (var ptr in DisplayCounter.windowPointers) {
-            s += "ptr: " + ptr.ToString() + "\n";
-        }
-
-        s += Display.displays.Length.ToString(); ;
-        text.text = s;
-    }
+		s += Display.displays.Length.ToString(); ;
+		text.text = s;
+	}
 }
