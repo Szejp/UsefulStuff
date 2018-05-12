@@ -54,8 +54,8 @@ public class NavMeshMovement : Movement {
 	}
 
 	public void RandomTargetPos() {
-	//	Vector3 targetPos = NavMeshUtils.RandomPointOnMap(NavMesh.AllAreas, _mapPivotReference.localScale.x, _mapPivotReference.localScale.z, _mapPivotReference.localScale.magnitude, _mapPivotReference.transform.position);
-	//	_agent.SetDestination(targetPos);
+		Vector3 targetPos = NavMeshUtils.RandomPointOnMap(NavMesh.AllAreas, _mapPivotReference.localScale.x, _mapPivotReference.localScale.z, _mapPivotReference.localScale.magnitude, _mapPivotReference.transform.position);
+		_agent.SetDestination(targetPos);
 	}
 
 	private Vector3 GetClosestPointOnMap(Vector3 position, float maxDistance) {
