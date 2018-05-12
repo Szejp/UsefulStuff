@@ -58,6 +58,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: ce05eeb13ce93744db1b09e02e7921db, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -95,7 +99,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample3:
-        m_Texture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 2800000, guid: ce05eeb13ce93744db1b09e02e7921db, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -143,7 +147,7 @@ Material:
     - _ASEOutlineColor: {r: 0.8773585, g: 0.3600481, b: 0.8085025, a: 0}
     - _Color: {r: 0.9811321, g: 0, b: 0, a: 1}
     - _Color0: {r: 0.4509804, g: 0.13333336, b: 0.180191, a: 0}
-    - _Color1: {r: 0.5632906, g: 4.826326, b: 0, a: 0}
+    - _Color1: {r: 0.32082155, g: 2.639016, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

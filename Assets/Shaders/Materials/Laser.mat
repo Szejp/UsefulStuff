@@ -103,7 +103,7 @@ Material:
     - _Blend: 0
     - _BumpScale: 1
     - _ChromaticAberration: 0.1
-    - _ColorFactor: 10.2
+    - _ColorFactor: 6.17
     - _Colorfactor: 3.84
     - _Cull: 2
     - _Cutoff: 0.5
@@ -135,7 +135,7 @@ Material:
     - Color_970EDFDE: {r: 1, g: 1, b: 1, a: 0}
     - Color_B2A629A1: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 0.9811321, g: 0, b: 0, a: 1}
-    - _Color0: {r: 0.13333336, g: 0.4509804, b: 0.41963574, a: 0}
+    - _Color0: {r: 0.36712354, g: 0.6226415, b: 0.5974052, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
