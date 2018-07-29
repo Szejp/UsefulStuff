@@ -16,7 +16,6 @@ public class SimplePlane3D : MonoBehaviour {
 
 	public void Turn(Vector2 turnVector) {
 		this.turnVector = turnVector * turnFactor;
-		Debug.Log("[SimplePlane3D] turn vector: " + this.turnVector);
 	}
 
 	private void Awake() {
@@ -35,13 +34,5 @@ public class SimplePlane3D : MonoBehaviour {
 			rbody.velocity = rbody.velocity.normalized * topSpeed;
 
 		turnVector = Vector2.zero;
-	}
-
-	private void Update() {
-#if UNITY_EDITOR
-		float turnHorizontal = Input.GetAxis("Horizontal");
-		float turnVertical = Input.GetAxis("Vertical");
-	//	turnVector = new Vector2(turnHorizontal, turnVertical);
-#endif
 	}
 }
