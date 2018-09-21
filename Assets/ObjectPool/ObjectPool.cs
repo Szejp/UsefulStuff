@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour {
+public class ObjectPool {
 
 	public Dictionary<string, Queue<int>> availableIndexes = new Dictionary<string, Queue<int>>();
 	public Dictionary<string, List<Component>> pools = new Dictionary<string, List<Component>>();
@@ -26,7 +24,7 @@ public class ObjectPool : MonoBehaviour {
 			queue.Enqueue(index);
 	}
 
-	public int GetIndex(Component objectToSpawn) {
+	private int GetIndex(Component objectToSpawn) {
 		var queue = TryGetDictionary(objectToSpawn.gameObject.name);
 		List<Component> list;
 
@@ -35,15 +33,17 @@ public class ObjectPool : MonoBehaviour {
 			var newObj = CreateObject(objectToSpawn);
 			newObj.gameObject.name = objectToSpawn.gameObject.name;
 			list.Add(newObj);
+			Debug.Log("[ObjectPool] no free object. New generated");
 			return list.Count - 1;
 		}
 		else {
+			Debug.Log("[ObjectPool] free object available. Dequeue.");
 			return queue.Dequeue();
 		}
 	}
 
 	private Component CreateObject(Component objectToSpawn) {
-		return (Component)Instantiate(objectToSpawn.gameObject).GetComponent(objectToSpawn.GetType());
+		return (Component)MonoBehaviour.Instantiate(objectToSpawn.gameObject).GetComponent(objectToSpawn.GetType());
 	}
 
 	private List<Component> TryGetPool(Component objectToSpawn) {
