@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[ExecuteInEditMode]
 public class SphereShaderModifier : MonoBehaviour {
 
     public GameObject sphereObj;
