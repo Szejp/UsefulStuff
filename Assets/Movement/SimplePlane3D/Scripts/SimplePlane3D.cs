@@ -29,7 +29,7 @@ public class SimplePlane3D : MonoBehaviour, ITurnable {
 	private void FixedUpdate() {
 		if (rbody != null) {
 			rbody.AddForce(rbody.transform.forward * thurst);
-			//if (Vector3.Angle(new Vector3(transform.forward.x, 0, transform.forward.z), new Vector3(startingVector.x, 0, startingVector.z)) < rotationConstraints.Max.x)
+			float angleX = Vector3.SignedAngle(transform.forward, startingVector, Vector3.up);
 			rbody.AddRelativeTorque(Vector3.up * torque * turnVector.x);
 			rbody.AddRelativeTorque(Vector3.right * torque * turnVector.y);
 		}

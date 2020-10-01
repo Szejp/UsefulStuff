@@ -7,6 +7,5 @@ public class TouchInput : MonoBehaviour, IDragHandler {
 
 	public void OnDrag(PointerEventData eventData) {
 		OnDragEvent.Invoke(eventData.delta);
-		Debug.LogFormat("[TouchInput] drag: {0}", eventData.delta);
 	}
 }
